@@ -54,7 +54,7 @@ def coding(string, alpha):
     return encoded_string
 
 
-def hf_encode(string):
+def encode(string):
     tree, prob = get_tree(string)
     alpha = get_code(tree)
     coding_str = coding(string, alpha)
@@ -65,7 +65,7 @@ def hf_encode(string):
 
 def main():
     string = input('Enter string: ')
-    hf_encode(string)
+    encode(string)
 
 
 if __name__ == '__main__':
