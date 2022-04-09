@@ -60,6 +60,13 @@ def get_blocks(data, size):
     return [f"{data[i:i + size]:<0{size}s}" for i in range(0, len(data), size)]
 
 
+def bits2a(data, bits):
+    data = list(data)
+    for b in bits[::-1]:
+        del data[b - 1]
+    return ''.join(chr(int(''.join(x), 2)) for x in zip(*[iter(data)]*8))
+
+
 def main():
     size = 16  # Block size
     error_data = []
@@ -83,7 +90,8 @@ def main():
         d = d.replace("_", "")
         src, error = find_error(d, bits)
         print(f"{str(error):<16} = {sum(error):>2}", end='')
-        print(f"{src:>28}", end='\n')
+        print(f"{src:>28}", end='   ')
+        print(bits2a(src, bits))
 
 
 if __name__ == '__main__':
