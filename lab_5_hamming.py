@@ -71,6 +71,8 @@ def main():
     size = 16  # Block size
     error_data = []
     source = input("Enter message: ")
+    if len(source) % 2 == 1:
+        source += ' '
     data = ''.join(format(ord(c), '08b') for c in source)
     data = get_blocks(data, size)
     print(f"{'Raw':<26}{'Parity Bits':<28}{'Determined bits':<28}")
